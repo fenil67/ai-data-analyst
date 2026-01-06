@@ -15,7 +15,11 @@ with st.sidebar:
     uploaded_file = st.file_uploader("Upload CSV or Excel", type=["csv", "xlsx"])
     
     st.header("2. Settings")
-    api_key = st.text_input("Google API Key", type="password")
+    # api_key = st.text_input("Google API Key", type="password")
+    # Auto-fills from secrets if available, but lets user change it
+    default_key = st.secrets.get("GOOGLE_API_KEY", "")
+    api_key = st.text_input("Google API Key", value=default_key, type="password")
+    
     
 # --- LOGIC ---
 if uploaded_file and api_key:
