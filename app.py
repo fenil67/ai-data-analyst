@@ -18,7 +18,7 @@ with st.sidebar:
     # api_key = st.text_input("Google API Key", type="password")
     # Auto-fills from secrets if available, but lets user change it
     default_key = st.secrets.get("GOOGLE_API_KEY", "")
-    api_key = st.text_input("Google API Key", value=default_key, type="password")
+    # api_key = st.text_input("Google API Key", value=default_key, type="password")
     
     
 # --- LOGIC ---
@@ -39,7 +39,7 @@ if uploaded_file and api_key:
             st.dataframe(df.head(100)) # Shows more rows now
         
         # Agent Setup
-        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=api_key, temperature=0)
+        llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", google_api_key=default_key, temperature=0)
         agent = create_pandas_dataframe_agent(
             llm,
             df,
