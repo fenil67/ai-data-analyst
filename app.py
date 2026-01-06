@@ -11,10 +11,10 @@ st.title("📊 Universal Data Analyst (Persistent Charts)")
 
 # --- SIDEBAR ---
 with st.sidebar:
-    st.header("1. Upload Data")
+    st.header("Upload Data")
     uploaded_file = st.file_uploader("Upload CSV or Excel", type=["csv", "xlsx"])
     
-    st.header("2. Settings")
+    # st.header("2. Settings")
     # api_key = st.text_input("Google API Key", type="password")
     # Auto-fills from secrets if available, but lets user change it
     default_key = st.secrets.get("GOOGLE_API_KEY", "")
@@ -22,7 +22,7 @@ with st.sidebar:
     
     
 # --- LOGIC ---
-if uploaded_file and api_key:
+if uploaded_file and default_key:
     try:
         if uploaded_file.name.endswith(".csv"):
             df = pd.read_csv(uploaded_file)
